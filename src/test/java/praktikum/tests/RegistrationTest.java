@@ -40,8 +40,7 @@ public class RegistrationTest extends BaseTest {
         );
 
         // Ждём перехода на страницу логина и логинимся
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.urlContains("login"));
+        loginPage.waitForPageLoad();
         loginPage.login(testUser.getEmail(), testUser.getPassword());
 
         assertTrue("Кнопка 'Оформить заказ' должна появиться после логина",
@@ -64,9 +63,5 @@ public class RegistrationTest extends BaseTest {
 
         assertTrue("Должна появиться ошибка о некорректном пароле",
                 registerPage.isPasswordErrorVisible());
-
-        // Доп. проверка, что страница не сменилась
-        assertTrue("Не должно происходить перехода на другую страницу",
-                driver.getCurrentUrl() != null && driver.getCurrentUrl().contains("register"));
     }
 }

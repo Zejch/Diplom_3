@@ -50,3 +50,4 @@ build/
 
 ### Allure temp ###
 .allure/
+allure-report/
